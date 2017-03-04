@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Ingredient} from '../ingredient';
 
 @Component({
@@ -7,7 +7,7 @@ import {Ingredient} from '../ingredient';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-    items: Ingredient[]=[];
+    @Input() items: Ingredient[]=[];
   constructor() { }
 
   ngOnInit() {
