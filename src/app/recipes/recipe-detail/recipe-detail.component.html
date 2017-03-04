@@ -5,10 +5,10 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <h1>{{selectedRecipe?.name}}</h1>
+    <h2>{{selectedRecipe?.name}}</h2>
   </div>
   <div class="col-xs-12">
-    <button class="btn btn-success">To Shopping List</button>
+    <button class="btn btn-success" (click) = "addItemsToShoppingList()">To Shopping List</button>
     <button class="btn btn-primary">Edit</button>
     <button class="btn btn-danger">Delete</button>
   </div>
@@ -21,7 +21,9 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    Ingredients
-    <rb-shopping-list></rb-shopping-list>
+    <h3>Ingredients</h3>
+    <ul class="ingredient-list">
+        <li class="list-group-item ingredient" *ngFor="let item of selectedRecipe?.ingredients">{{item?.name}} ({{item?.amount}} {{item?.units}})</li>
+    </ul>
   </div>
 </div>
