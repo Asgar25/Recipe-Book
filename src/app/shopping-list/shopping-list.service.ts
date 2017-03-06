@@ -6,21 +6,25 @@ export class ShoppingListService {
   private items: Ingredient[] = [];
   constructor() { }
 
-  getItems(){
-      return this.items;
+  getItems() {
+    return this.items;
   }
 
   addItems(items: Ingredient[]) {
-      // Apply a push to all items in the passed array.
-      // Push each into the private array
-      Array.prototype.push.apply(this.items, items);
+    // Apply a push to all items in the passed array.
+    // Push each into the private array
+    Array.prototype.push.apply(this.items, items);
   }
 
   addItem(item: Ingredient) {
-      this.items.push(item);
+    this.items.push(item);
   }
 
-  editItem(oldItem: Ingredient, newItem: Ingredient){
-      this.items[this.items.indexOf(oldItem)] = newItem;
+  editItem(oldItem: Ingredient, newItem: Ingredient) {
+    this.items[this.items.indexOf(oldItem)] = newItem;
+  }
+
+  deleteItem(item: Ingredient) {
+    this.items.splice(this.items.indexOf(item), 1);
   }
 }

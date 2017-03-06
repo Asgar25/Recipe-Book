@@ -21,8 +21,8 @@
           <button class="btn btn-success" type="submit" *ngIf="isAdd" [disabled]="!f.valid">Add</button>
           <div *ngIf="!isAdd">
             <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
-            <button class="btn btn-danger" type="button">Delete Item</button>
-            <button class="btn btn-primary" type="button">Clear</button>
+            <button class="btn btn-danger" type="button" (click)="onDelete()">Delete Item</button>
+            <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
           </div>
         </div>
       </div>

@@ -17,5 +17,11 @@ export class ShoppingListComponent implements OnInit {
     this.items = this.shoppingListService.getItems();
   }
 
-  onSelectItem(item: Ingredient) { this.selectedItem = item; }
+  onSelectItem(item: Ingredient) {
+    this.selectedItem = item;
+  }
+
+  onCleared() {
+    this.selectedItem = null;
+  }
 }
