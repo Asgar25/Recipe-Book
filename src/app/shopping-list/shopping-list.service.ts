@@ -15,4 +15,7 @@ export class ShoppingListService {
       // Push each into the private array
       Array.prototype.push.apply(this.items, items);
   }
+  addItem(item: Ingredient) {
+      this.items.push(item);
+  }
 }
