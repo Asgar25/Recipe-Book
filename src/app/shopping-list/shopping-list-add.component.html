@@ -4,23 +4,23 @@
       <div class="row">
         <div class="offser-sm-1 col-sm-5 form-group">
           <label for="item-name">Name</label>
-          <input type="text" id="item-name" required class="form-control" ngModel name="name">
+          <input type="text" id="item-name" required class="form-control" [ngModel]="item?.name" name="name">
         </div>
 
         <div class="col-sm-2 form-group">
           <label for="item-amount">Amount</label>
-          <input type="text" id="item-amount" required class="form-control" ngModel name="amount">
+          <input type="text" id="item-amount" required class="form-control" [ngModel]="item?.amount" name="amount">
         </div>
         <div class="col-sm-2 form-group">
           <label for="item-amount">Unit</label>
-          <input type="text" id="item-unit" required class="form-control" ngModel name="units">
+          <input type="text" id="item-unit" required class="form-control" [ngModel]="item?.units" name="units">
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <button class="btn btn-success" type="submit" *ngIf="isAdd" [disabled]="!f.valid">Add</button>
           <div *ngIf="!isAdd">
-            <button class="btn btn-danger" type="submit" [disabled]="!f.valid">Save</button>
+            <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
             <button class="btn btn-danger" type="button">Delete Item</button>
             <button class="btn btn-primary" type="button">Clear</button>
           </div>
