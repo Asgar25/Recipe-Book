@@ -22,4 +22,12 @@ export class RecipeService {
   deleteRecipe(id: number) {
     this.recipes.splice(id, 1);
   }
+
+  addRecipe(newRecipe: Recipe) {
+      this.recipes.push(newRecipe);
+  }
+
+  editRecipe(oldRecipe: Recipe, newRecipe: Recipe) {
+      this.recipes[this.recipes.indexOf(oldRecipe)] = newRecipe;
+  }
 }

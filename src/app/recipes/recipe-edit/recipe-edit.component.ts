@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormArray, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Rx';
 
@@ -18,7 +18,10 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   private recipe: Recipe;
   private isNew: boolean = true;
 
-  constructor(private route: ActivatedRoute, private recipeService: RecipeService, private formBuilder: FormBuilder) { }
+  constructor(private route: ActivatedRoute,
+    private recipeService: RecipeService,
+    private formBuilder: FormBuilder,
+    private router: Router) { }
 
   ngOnInit() {
     // Subscribe to changes in route params.  Use to get current recipe ID
@@ -48,7 +51,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     let recipeIngredients: FormArray = new FormArray([]);
 
     if (!this.isNew) {
-        console.dir(this.recipe);
+      console.dir(this.recipe);
       for (let i = 0; i < this.recipe.ingredients.length; i++) {
         recipeIngredients.push(
           new FormGroup({
@@ -60,7 +63,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       }
       recipeName = this.recipe.name;
       recipeDesc = this.recipe.description;
-      recipeImageUrl = this.recipe.imagePath;
+      recipeImageUrl = this.recipe.imageUrl;
     }
     this.recipeForm = this.formBuilder.group({
       name: [recipeName, Validators.required],
@@ -68,6 +71,24 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       imageUrl: [recipeImageUrl, [Validators.required, Validators.pattern('((http[s]?)?:\/\/.*\.(?:png|jpg|jpeg|gif))')]],
       ingredients: recipeIngredients
     });
+  }
+
+  onSubmit() {
+    const newRecipe = this.recipeForm.value;
+    if (this.isNew) {
+      this.recipeService.addRecipe(newRecipe);
+    } else {
+      this.recipeService.editRecipe(this.recipe, newRecipe);
+    }
+    this.navigateBack();
+  }
+
+  onCancel() {
+    this.navigateBack();
+  }
+
+  private navigateBack() {
+      this.router.navigate(['../']);
   }
 
 }
