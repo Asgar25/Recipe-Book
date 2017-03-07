@@ -65,7 +65,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     this.recipeForm = this.formBuilder.group({
       name: [recipeName, Validators.required],
       description: [recipeDesc, Validators.required],
-      imageUrl: [recipeImageUrl, Validators.required],
+      imageUrl: [recipeImageUrl, [Validators.required, Validators.pattern('((http[s]?)?:\/\/.*\.(?:png|jpg|jpeg|gif))')]],
       ingredients: recipeIngredients
     });
   }

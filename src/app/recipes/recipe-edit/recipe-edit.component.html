@@ -9,33 +9,43 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <div class="form-group">
-            <label for="name">Name</label>
+          <div class="form-group has-feedback" [class.has-success]="recipeForm.controls['name'].valid" [class.has-error]="!recipeForm.controls['name'].valid">
+            <label class="control-label" for="name">Name</label>
             <input type="text" id="name" class="form-control" formControlName="name">
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="recipeForm.controls['name'].valid"></span>
+            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!recipeForm.controls['name'].valid"></span>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <div class="form-group">
-            <label for="image-url">Image Url</label>
-            <input type="text" id="image-url" class="form-control" formControlName="imageUrl" #imageUrl>
+          <div class="form-group has-feedback" [class.has-success]="recipeForm.controls['imageUrl'].valid" [class.has-error]="!recipeForm.controls['imageUrl'].valid">
+            <label class="control-label" for="image-url">Image Url</label>
+            <div class="input-group">
+              <span class="glyphicon glyphicon-picture input-group-addon"></span>
+              <input type="url" id="image-url" class="form-control" formControlName="imageUrl" #imageUrl placeholder="http://www.example.com/image.jpg">
+            </div>
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="recipeForm.controls['imageUrl'].valid"></span>
+            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!recipeForm.controls['imageUrl'].valid"></span>
+            <span *ngIf="!recipeForm.controls['imageUrl'].valid" id="helpBlock" class="help-block">Full image path URL.  Must be a PNG, JPG, JPEG, or GIF.</span>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <!-- Img Preview -->
-          <div class="img">
+          <div class="img img-thumbnail">
             <img [src]="imageUrl.value">
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <div class="form-group">
-            <label for="content">Description</label>
+          <div class="form-group has-feedback" [class.has-success]="recipeForm.controls['description'].valid" [class.has-error]="!recipeForm.controls['description'].valid">
+            <label class="control-label" for="content">Description</label>
             <textarea type="text" id="content" rows="6" class="form-control" formControlName="description"></textarea>
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="recipeForm.controls['description'].valid"></span>
+            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!recipeForm.controls['description'].valid"></span>
           </div>
         </div>
       </div>
@@ -47,17 +57,26 @@
             <div class="row" *ngFor="let ingredient of recipeForm.controls['ingredients'].controls; let i = index">
               <div formGroupName="{{i}}">
                 <div class="col-sm-5">
-
-                  <input type="text" class="form-control" formControlName="name">
+                  <div class="form-group has-feedback" [class.has-success]="ingredient.controls['name'].valid" [class.has-error]="!ingredient.controls['name'].valid">
+                    <input type="text" class="form-control" formControlName="name">
+                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!ingredient.controls['name'].valid"></span>
+                  </div>
                 </div>
+
                 <div class="col-sm-2">
-                  <input type="text" class="form-control" formControlName="amount">
+                  <div class="form-group has-feedback" [class.has-success]="ingredient.controls['amount'].valid" [class.has-error]="!ingredient.controls['amount'].valid">
+                    <input type="number" class="form-control" formControlName="amount">
+                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!ingredient.controls['amount'].valid"></span>
+                  </div>
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" class="form-control"  formControlName="units">
+                  <div class="form-group has-feedback" [class.has-success]="ingredient.controls['units'].valid" [class.has-error]="!ingredient.controls['units'].valid">
+                    <input type="text" class="form-control" formControlName="units">
+                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!ingredient.controls['units'].valid"></span>
+                  </div>
                 </div>
                 <div class="col-sm-2">
-                  <button class="btn btn-danger">X</button>
+                  <button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
                 </div>
               </div>
 
@@ -74,11 +93,17 @@
   <div class="col-xs-12">
     <label for="content">Add Ingredients</label>
     <div class="form-group row">
-      <div class="col-md-5"><input type="text" class="form-control" placeholder="Ingredient"></div>
-      <div class="col-md-2"><input type="text" class="form-control" placeholder="#"></div>
-      <div class="col-md-3"><input type="text" class="form-control" placeholder="Units"></div>
+      <div class="col-md-5">
+        <input type="text" class="form-control" placeholder="Ingredient">
+      </div>
       <div class="col-md-2">
-        <button type="button" class="btn btn-primary">+</button>
+        <input type="number" class="form-control" placeholder="#">
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" placeholder="Units">
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
       </div>
     </div>
   </div>
