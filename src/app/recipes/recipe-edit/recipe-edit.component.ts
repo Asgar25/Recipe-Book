@@ -87,8 +87,22 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     this.navigateBack();
   }
 
+  onRemoveIngredient(index: number) {
+      (<FormArray>this.recipeForm.controls['ingredients']).removeAt(index);
+  }
+
+  onAddIngredient(name: string, amount: string, units: string) {
+      (<FormArray>this.recipeForm.controls['ingredients']).push(
+          new FormGroup({
+            name: new FormControl(name, Validators.required),
+            amount: new FormControl(amount, [Validators.required, Validators.pattern('\\d+')]),
+            units: new FormControl(units, Validators.required)
+          })
+      );
+  }
+
   private navigateBack() {
-      this.router.navigate(['../']);
+    this.router.navigate(['/recipes/' + this.route.snapshot.params['id']]);
   }
 
 }

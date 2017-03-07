@@ -76,7 +76,7 @@
                   </div>
                 </div>
                 <div class="col-sm-2">
-                  <button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                  <button class="btn btn-danger" (click)="onRemoveIngredient(i)"><span class="glyphicon glyphicon-remove"></span></button>
                 </div>
               </div>
 
@@ -88,22 +88,24 @@
     </form>
   </div>
 </div>
-<hr>
+
 <div class="row">
   <div class="col-xs-12">
     <label for="content">Add Ingredients</label>
     <div class="form-group row">
       <div class="col-md-5">
-        <input type="text" class="form-control" placeholder="Ingredient">
+        <input type="text" class="form-control" placeholder="Ingredient" #ingName>
       </div>
       <div class="col-md-2">
-        <input type="number" class="form-control" placeholder="#">
+        <input type="number" class="form-control" placeholder="#" #ingAmount>
       </div>
       <div class="col-md-3">
-        <input type="text" class="form-control" placeholder="Units">
+        <input type="text" class="form-control" placeholder="Units" #ingUnits>
       </div>
       <div class="col-md-2">
-        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+        <button type="button" class="btn btn-primary" (click)="onAddIngredient(ingName.value, ingAmount.value, ingUnits.value); ingName.value=''; ingAmount.value=''; ingUnits.value='';">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
       </div>
     </div>
   </div>
