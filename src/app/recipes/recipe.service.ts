@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
 import {Recipe} from './recipe';
 import {Ingredient} from '../ingredient';
 
@@ -9,7 +10,8 @@ export class RecipeService {
     new Ingredient('Oats', 1, 'cup')]),
     new Recipe('Sauerkraut Balls', 'Meatball-sized fritter containing sauerkraut and ham', 'http://img.sndimg.com/food/image/upload/h_420,w_560,c_fit/v1/img/recipes/13/70/0/picqGwJLm.jpg', [new Ingredient('Ham', 3, 'lbs'),
       new Ingredient('Sauerkraut', 1, 'cup')])];
-  constructor() { }
+
+  constructor(private http: Http) { }
 
   getRecipes() {
     return this.recipes;
@@ -29,5 +31,17 @@ export class RecipeService {
 
   editRecipe(oldRecipe: Recipe, newRecipe: Recipe) {
       this.recipes[this.recipes.indexOf(oldRecipe)] = newRecipe;
+  }
+
+  storeData() {
+      const body:string = JSON.stringify(this.recipes);
+      const headers: Headers = new Headers({
+          'Content-Type': 'application/json'
+      });
+      return this.http.post('https://recipebook-6cec3.firebaseio.com/recipes.json',body, {headers: headers});
+  }
+
+  fetchData() {
+
   }
 }
