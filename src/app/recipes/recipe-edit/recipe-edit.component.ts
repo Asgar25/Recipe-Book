@@ -12,12 +12,13 @@ import { Recipe } from '../recipe';
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit, OnDestroy {
-  recipeForm: FormGroup;
-  private subscription: Subscription;
-  private recipeIndex: number;
-  private recipe: Recipe;
-  private isNew: boolean = true;
+  recipeForm: FormGroup;                // Main form for editing or adding recipes
+  private subscription: Subscription;   // Subscribe to Router param changes.  Used to get Recipe ID
+  private recipeIndex: number;          // ID of recipe location in recipes array
+  private recipe: Recipe;               // The current Rcipe for the edit/new form
+  private isNew: boolean = true;        //  Are we editing or adding
 
+  // Inject the active route, custom Recipe Service, Form Builder, and Router
   constructor(private route: ActivatedRoute,
     private recipeService: RecipeService,
     private formBuilder: FormBuilder,
@@ -29,29 +30,40 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       (params: any) => {
         if (params.hasOwnProperty('id')) {  // is there an ID in the Route params?
           this.isNew = false;
-          this.recipeIndex = +params['id'];  // + converts string id to a number for index
-          this.recipe = this.recipeService.getRecipe(this.recipeIndex);
+          this.recipeIndex = +params['id'];  // '+ converts string id to a number for index
+          this.recipe = this.recipeService.getRecipe(this.recipeIndex); // Get the recipe based on index
         } else {
           this.isNew = true;
           this.recipe = null;
         }
-        this.initForm();
+        this.initForm();    // Initialize form fields based on isNew and recipe
       }
     )
   }
 
+  // unsubscribe to stop memory leaks
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
+
+  /**
+   * private initForm - Initializes the FormGroup and controls with default recipe data & validators
+   *
+   * @returns {void}
+   */
   private initForm() {
+    // Default values for <input> tags
     let recipeName = '';
     let recipeImageUrl = '';
     let recipeDesc = '';
     let recipeIngredients: FormArray = new FormArray([]);
 
+    // Populate form fields with existing recipe data.  Editing
     if (!this.isNew) {
+      // Fixes issue when Firebase object doesn't contain any ingredient objects
       if (this.recipe.hasOwnProperty('ingredients')) {
+        // Loop through all ingredients.  Adding more controls to the sub-FormGroup
         for (let i = 0; i < this.recipe.ingredients.length; i++) {
           recipeIngredients.push(
             new FormGroup({
@@ -67,6 +79,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       recipeDesc = this.recipe.description;
       recipeImageUrl = this.recipe.imageUrl;
     }
+    // Build the main FormGroup
     this.recipeForm = this.formBuilder.group({
       name: [recipeName, Validators.required],
       description: [recipeDesc, Validators.required],
@@ -75,6 +88,12 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     });
   }
 
+
+  /**
+   * onSubmit - Adds new recipes to the array or edits an existing one. Then navigates to the recipe detail page.
+   *
+   * @returns {void}
+   */
   onSubmit() {
     const newRecipe = this.recipeForm.value;
     if (this.isNew) {
@@ -85,14 +104,36 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     this.navigateBack();
   }
 
+
+  /**
+   * onCancel - Navigates back to the recipe detail page.
+   *
+   * @returns {void}
+   */
   onCancel() {
     this.navigateBack();
   }
 
+
+  /**
+   * onRemoveIngredient - Removes a specific Ingredient from the Recipe based on ID
+   *
+   * @param  {number} index Ingredient Id to remove from array within Recipe
+   * @returns {void}
+   */
   onRemoveIngredient(index: number) {
     (<FormArray>this.recipeForm.controls['ingredients']).removeAt(index);
   }
 
+
+  /**
+   * onAddIngredient - Pushes a new Ingredient Form Control into the form when the '+' is clicked
+   *
+   * @param  {string} name: string   description
+   * @param  {string} amount: string description
+   * @param  {string} units: string  description
+   * @returns {void}
+   */
   onAddIngredient(name: string, amount: string, units: string) {
     (<FormArray>this.recipeForm.controls['ingredients']).push(
       new FormGroup({
@@ -103,6 +144,12 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     );
   }
 
+
+  /**
+   * private navigateBack - navigates the browser to the current recipe's detail page, away from Edit/Add  
+   *
+   * @returns {void}
+   */
   private navigateBack() {
     this.router.navigate(['/recipes/' + this.route.snapshot.params['id']]);
   }

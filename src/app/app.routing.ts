@@ -4,6 +4,13 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RECIPE_ROUTES } from './recipes/recipes.routes';
 
 
+/**
+ * Main routes/paths defined for application.
+ * - No path
+ * - /recipes
+ * - /shopping
+ * - ** invalud paths
+ */
 const APP_ROUTES: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
   { path: 'recipes', component: RecipesComponent, children: RECIPE_ROUTES },

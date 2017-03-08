@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RecipeService } from './recipes/recipe.service';
 
 @Component({
@@ -6,14 +6,14 @@ import { RecipeService } from './recipes/recipe.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   isCollapsed: boolean = true;
 
   constructor(private recipeService: RecipeService) { }
 
-  ngOnInit() {
-  }
-
+  /**
+   * onStore - Saves all recipes to database. Uses RecipeService to 'put()' JSON data into the Firebase database. Logs all returned data and errors.
+   */
   onStore() {
     this.recipeService.storeData().subscribe(
       data => console.log(data),
@@ -21,11 +21,19 @@ export class HeaderComponent implements OnInit {
     );
   }
 
+
+  /**
+   * onFetch - Gets all recipes from database. Uses RecipeService to 'get()' JSON data from the Firebase database. Logs all returned data and errors.
+   */
   onFetch() {
     this.recipeService.fetchData();
   }
 
+
+  /**
+   * toggleCollapsed - Toggles the boolean property 'isCollapsed', which is used to add or remove the 'in' class to the nav-bar for collapsing
+   */
   toggleCollapsed() {
-      this.isCollapsed = !this.isCollapsed;
+    this.isCollapsed = !this.isCollapsed;
   }
 }

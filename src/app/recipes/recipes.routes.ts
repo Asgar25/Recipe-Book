@@ -3,6 +3,13 @@ import { RecipeStartComponent } from './recipe-start.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 
+/**
+ * Sub-routes/paths just for "/recipes/".
+ * - No path - /recipes
+ * - New - /recipes/new
+ * - Id - /recipes/0
+ * - Edit - /recipes/0/edit
+ */
 export const RECIPE_ROUTES: Routes = [
     { path: '', component: RecipeStartComponent },
     { path: 'new', component: RecipeEditComponent },
