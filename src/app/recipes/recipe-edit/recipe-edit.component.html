@@ -27,7 +27,9 @@
             </div>
             <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="recipeForm.controls['imageUrl'].valid"></span>
             <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!recipeForm.controls['imageUrl'].valid && !recipeForm.controls['imageUrl'].pristine"></span>
-            <span *ngIf="!recipeForm.controls['imageUrl'].valid" id="helpBlock" class="help-block">Full image path URL.  Must be a PNG, JPG, JPEG, or GIF.</span>
+            <span *ngIf="!recipeForm.controls['imageUrl'].valid" id="helpBlock" class="help-block bg-warning">
+                Full image path URL.  Must be a PNG, JPG, JPEG, or GIF.
+            </span>
           </div>
         </div>
       </div>

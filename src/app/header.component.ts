@@ -7,6 +7,7 @@ import { RecipeService } from './recipes/recipe.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  isCollapsed: boolean = true;
 
   constructor(private recipeService: RecipeService) { }
 
@@ -15,12 +16,16 @@ export class HeaderComponent implements OnInit {
 
   onStore() {
     this.recipeService.storeData().subscribe(
-        data => console.log(data),
-        error => console.log(error)
+      data => console.log(data),
+      error => console.log(error)
     );
   }
 
   onFetch() {
     this.recipeService.fetchData();
+  }
+
+  toggleCollapsed() {
+      this.isCollapsed = !this.isCollapsed;
   }
 }
