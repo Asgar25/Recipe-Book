@@ -51,16 +51,18 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     let recipeIngredients: FormArray = new FormArray([]);
 
     if (!this.isNew) {
-      console.dir(this.recipe);
-      for (let i = 0; i < this.recipe.ingredients.length; i++) {
-        recipeIngredients.push(
-          new FormGroup({
-            name: new FormControl(this.recipe.ingredients[i].name, Validators.required),
-            amount: new FormControl(this.recipe.ingredients[i].amount, [Validators.required, Validators.pattern('\\d+')]),
-            units: new FormControl(this.recipe.ingredients[i].units, Validators.required)
-          })
-        );
+      if (this.recipe.hasOwnProperty('ingredients')) {
+        for (let i = 0; i < this.recipe.ingredients.length; i++) {
+          recipeIngredients.push(
+            new FormGroup({
+              name: new FormControl(this.recipe.ingredients[i].name, Validators.required),
+              amount: new FormControl(this.recipe.ingredients[i].amount, [Validators.required, Validators.pattern('\\d+')]),
+              units: new FormControl(this.recipe.ingredients[i].units, Validators.required)
+            })
+          );
+        }
       }
+
       recipeName = this.recipe.name;
       recipeDesc = this.recipe.description;
       recipeImageUrl = this.recipe.imageUrl;
@@ -88,17 +90,17 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   }
 
   onRemoveIngredient(index: number) {
-      (<FormArray>this.recipeForm.controls['ingredients']).removeAt(index);
+    (<FormArray>this.recipeForm.controls['ingredients']).removeAt(index);
   }
 
   onAddIngredient(name: string, amount: string, units: string) {
-      (<FormArray>this.recipeForm.controls['ingredients']).push(
-          new FormGroup({
-            name: new FormControl(name, Validators.required),
-            amount: new FormControl(amount, [Validators.required, Validators.pattern('\\d+')]),
-            units: new FormControl(units, Validators.required)
-          })
-      );
+    (<FormArray>this.recipeForm.controls['ingredients']).push(
+      new FormGroup({
+        name: new FormControl(name, Validators.required),
+        amount: new FormControl(amount, [Validators.required, Validators.pattern('\\d+')]),
+        units: new FormControl(units, Validators.required)
+      })
+    );
   }
 
   private navigateBack() {
