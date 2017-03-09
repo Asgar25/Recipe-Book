@@ -11,13 +11,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 2. Download and install [GitHub Desktop](https://help.github.com/articles/set-up-git/) using these [instructions](https://help.github.com/articles/set-up-git/)
 3. Clone this repository using the [instructions from GitHub](https://help.github.com/articles/cloning-a-repository/)
     * Ensure you use command:
-        ```sh
-        $ git clone https://github.com/ZGrauer/recipe-book.git
-        ```
-4. Install all dependencies by entering the below command from a terminal within the cloned folder.
-    ```sh
-    $ npm install
-    ```
+        `git clone https://github.com/ZGrauer/recipe-book.git`
+
+4. Install all dependencies by entering `npm install` from a terminal within the cloned folder.
 5. Edit Angular files as needed within the `./src/app/` folder.  Use the [Angular CLI](https://cli.angular.io/) to add components.
 
 ## Development server
