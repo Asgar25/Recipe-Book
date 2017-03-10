@@ -18,10 +18,10 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button class="btn btn-success" type="submit" *ngIf="isAdd" [disabled]="!f.valid">Add</button>
+          <button class="btn btn-success" type="submit" *ngIf="isAdd" [disabled]="!f.valid"><span class="glyphicon glyphicon-plus"></span></button>
           <div *ngIf="!isAdd">
-            <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
-            <button class="btn btn-danger" type="button" (click)="onDelete()">Delete Item</button>
+            <button class="btn btn-success" type="submit" [disabled]="!f.valid"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+            <button class="btn btn-danger" type="button" (click)="onDelete()"><span class="glyphicon glyphicon-trash"></span></button>
             <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
           </div>
         </div>

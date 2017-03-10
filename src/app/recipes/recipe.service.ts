@@ -1,12 +1,17 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+import { Router } from '@angular/router';
+import 'rxjs/Rx';
+
 import {Recipe} from './recipe';
 import {Ingredient} from '../ingredient';
-import 'rxjs/Rx';
+
+
+declare var firebase: any;
 
 @Injectable()
 export class RecipeService {
-    // Array populated with default data, should Firebase connection not function
+  // Array populated with default data, should Firebase connection not function
   private recipes: Recipe[] = [new Recipe('Pruttles', 'Best breakfast food ever, shown here with eggs and toast.  Popular for many generations in the Volga German population of Central Kansas.', 'https://dannwoellertthefoodetymologist.files.wordpress.com/2014/10/images.jpg', [new Ingredient('Pork', 2, 'lbs'),
     new Ingredient('Beef', 1, 'lbs'),
     new Ingredient('Oats', 1, 'cup')]),
@@ -15,7 +20,7 @@ export class RecipeService {
 
   recipesChanged = new EventEmitter<Recipe[]>();    // Emits an array of Recipe objects from the Firebase Db
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private router: Router) { }
 
 
   /**
@@ -71,7 +76,7 @@ export class RecipeService {
 
 
   /**
-   * storeData - Puts all recipes in the array into the Firebase database as JSON
+   * storeData - Depreciated.  Used before Firebase AuthService
    *
    * @returns {Observable<Response>}
    */
@@ -87,6 +92,18 @@ export class RecipeService {
 
 
   /**
+   * saveData - Puts all recipes in the array into the Firebase database
+   *
+   * @returns {void}
+   */
+  saveData() {
+    //const data: string = JSON.stringify(this.recipes);
+    firebase.database().ref('recipes').set(this.recipes);
+  }
+
+
+
+  /**
    * fetchData - USing an HTTP GET, pulls all recipe objects from Firebase Db.  Then it sets the recipes array to the returned data.
    */
   fetchData() {
@@ -97,6 +114,7 @@ export class RecipeService {
         console.log(data);
         this.recipes = data;
         this.recipesChanged.emit(this.recipes);
+        this.router.navigate(['/recipes']);
       },
       error => console.log(error)
       );

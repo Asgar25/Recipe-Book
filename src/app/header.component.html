@@ -14,17 +14,30 @@
     <!-- Collect the nav links and other content for toggling -->
     <div class="collapse navbar-collapse" id="recipe-navbar" [class.in]="!isCollapsed">
       <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a [routerLink]="['/recipes']">Recipes</a></li>
-        <li routerLinkActive="active"><a [routerLink]="['/shopping']">Shopping List</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['/recipes']" class="nav-item"><span class="glyphicon glyphicon-book"></span> Recipes</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['/shopping']" class="nav-item"><span class="glyphicon glyphicon-list-alt"></span> Shopping List</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown" rbDropdown>
-          <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Recipe Management<span class="caret"></span></a>
+        <li class="dropdown" rbDropdown *ngIf="isAuthenticated">
+          <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" class="nav-item"><span class="glyphicon glyphicon-cog"></span> Recipe Management<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a (click)="onStore()" class="pointer">Store Recipes</a></li>
-            <li><a (click)="onFetch()" class="pointer">Fetch Recipes</a></li>
+            <li><a (click)="onStore()" class="pointer nav-dropdown-item">Store Recipes</a></li>
+            <li><a (click)="onFetch()" class="pointer nav-dropdown-item">Fetch Recipes</a></li>
           </ul>
         </li>
+        <div class="google-btn pointer" *ngIf="!isAuthenticated" (click)="onLogin()">
+          <div class="google-icon-wrapper">
+            <img class="google-icon-svg" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+          </div>
+          <p class="btn-text"><b>Login with Google</b></p>
+        </div>
+
+        <div class="google-btn pointer" *ngIf="isAuthenticated" (click)="onLogout()">
+          <div class="google-icon-wrapper">
+            <img class="google-icon-svg" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+          </div>
+          <p class="btn-text"><b>Logout</b></p>
+        </div>
       </ul>
     </div>
     <!-- /.navbar-collapse -->

@@ -146,7 +146,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
 
 
   /**
-   * private navigateBack - navigates the browser to the current recipe's detail page, away from Edit/Add  
+   * private navigateBack - navigates the browser to the current recipe's detail page, away from Edit/Add
    *
    * @returns {void}
    */

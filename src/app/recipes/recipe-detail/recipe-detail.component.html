@@ -9,9 +9,9 @@
     <h2>{{selectedRecipe?.name}}</h2>
   </div>
   <div class="col-xs-12">
-    <button class="btn btn-success" (click)="addItemsToShoppingList()">To Shopping List</button>
+    <button class="btn btn-success" (click)="addItemsToShoppingList()" data-toggle="tooltip" title="Add to shopping list"><span class="glyphicon glyphicon-plus"></span> Shopping List</button>
     <button class="btn btn-primary" (click)="onEdit()">Edit</button>
-    <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+    <button class="btn btn-danger" (click)="onDelete()" data-toggle="tooltip" title="Delete Recipe"><span class="glyphicon glyphicon-trash"></span></button>
   </div>
 </div>
 <hr>
