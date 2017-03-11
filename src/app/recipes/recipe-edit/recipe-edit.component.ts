@@ -1,4 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy
+} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormArray, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Rx';
@@ -12,6 +16,7 @@ import { Recipe } from '../recipe';
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit, OnDestroy {
+    in;
   recipeForm: FormGroup;                // Main form for editing or adding recipes
   private subscription: Subscription;   // Subscribe to Router param changes.  Used to get Recipe ID
   private recipeIndex: number;          // ID of recipe location in recipes array
