@@ -13,9 +13,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 2. Download and install [GitHub Desktop](https://help.github.com/articles/set-up-git/) using these [instructions](https://help.github.com/articles/set-up-git/)
 3. Clone this repository using the [instructions from GitHub](https://help.github.com/articles/cloning-a-repository/)
     * Ensure you use command:
-        ```Shell
-            $ git clone https://github.com/ZGrauer/recipe-book.git
-        ```
+        `git clone https://github.com/ZGrauer/recipe-book.git`
 
 4. Install all dependencies by entering `npm install` from a terminal within the cloned folder.
 5. Go to [console.firebase.google.com/](https://console.firebase.google.com/) and `Create New Project` using [this guide](https://firebase.google.com/docs/web/setup).
