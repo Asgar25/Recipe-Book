@@ -13,15 +13,37 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 2. Download and install [GitHub Desktop](https://help.github.com/articles/set-up-git/) using these [instructions](https://help.github.com/articles/set-up-git/)
 3. Clone this repository using the [instructions from GitHub](https://help.github.com/articles/cloning-a-repository/)
     * Ensure you use command:
-        `git clone https://github.com/ZGrauer/recipe-book.git`
+        ```Shell
+            $ git clone https://github.com/ZGrauer/recipe-book.git
+        ```
 
 4. Install all dependencies by entering `npm install` from a terminal within the cloned folder.
-5. Edit Angular files as needed within the `./src/app/` folder.  Use the [Angular CLI](https://cli.angular.io/) to add components.
+5. Go to [console.firebase.google.com/](https://console.firebase.google.com/) and `Create New Project` using [this guide](https://firebase.google.com/docs/web/setup).
+6. Go to your project file `/src/index.html`, and update the Firebase `var config` values within the `<script>` tag starting on line 24.  This will setup the connection to your database.
+7. Edit Angular files as needed within the `./src/app/` folder.  Use the [Angular CLI](https://cli.angular.io/) to add components.
 
 ## Development server
+Be sure to update the Firebase configuration settings in `/src/index.html` before running `ng serve`.
+
+```TypeScript
+    <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        // TODO: Replace with your project's customized code snippet
+        var config = {
+        apiKey: "<API_KEY>",
+        authDomain: "<PROJECT_ID>.firebaseapp.com",
+        databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
+        storageBucket: "<BUCKET>.appspot.com",
+        messagingSenderId: "<SENDER_ID>",
+        };
+        firebase.initializeApp(config);
+    </script>
+```
+
 Run `ng serve` in a terminal from the project directory for a dev server. The app can then be run by navigating to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-```sh
+```Shell
     $ ng serve
 ```
 
@@ -29,7 +51,7 @@ Run `ng serve` in a terminal from the project directory for a dev server. The ap
 
 From a terminal run `ng generate component component-name` to generate a new component using the Angular CLI. You can also use `ng generate directive/pipe/service/class/module`.
 
-```sh
+```Shell
     $ ng generate component component-name
 ```
 
@@ -37,7 +59,7 @@ From a terminal run `ng generate component component-name` to generate a new com
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-```sh
+```Shell
     $ ng build
 ```
 
@@ -45,7 +67,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-```sh
+```Shell
     $ ng help
 ```
 
