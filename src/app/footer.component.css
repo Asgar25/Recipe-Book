@@ -1,0 +1,22 @@
+  /* Sticky footer styles
+-------------------------------------------------- */
+
+  #footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+  }
+  /* Custom page CSS
+-------------------------------------------------- */
+  /* Not required for template or sticky footer method. */
+
+  .container {
+    width: auto;
+    max-width: 900px;
+    padding: 15px 15px;
+  }
+
+  .text-muted {
+    padding: 0 15px;
+  }
