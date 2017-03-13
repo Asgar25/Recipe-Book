@@ -12,11 +12,34 @@ declare var firebase: any;
 @Injectable()
 export class RecipeService {
   // Array populated with default data, should Firebase connection not function
-  private recipes: Recipe[] = [new Recipe('Pruttles', 'Best breakfast food ever, shown here with eggs and toast.  Popular for many generations in the Volga German population of Central Kansas.', 'https://dannwoellertthefoodetymologist.files.wordpress.com/2014/10/images.jpg', [new Ingredient('Pork', 2, 'lbs'),
-    new Ingredient('Beef', 1, 'lbs'),
-    new Ingredient('Oats', 1, 'cup')]),
-    new Recipe('Sauerkraut Balls', 'Meatball-sized fritter containing sauerkraut and ham', 'http://img.sndimg.com/food/image/upload/h_420,w_560,c_fit/v1/img/recipes/13/70/0/picqGwJLm.jpg', [new Ingredient('Ham', 3, 'lbs'),
-      new Ingredient('Sauerkraut', 1, 'cup')])];
+  private recipes: Recipe[] = [new Recipe('Pruttles', 'Best breakfast food ever, shown here with eggs and toast.  ' +
+    'Popular for many generations in the Volga German population of Central Kansas. <br/><br/> ' +
+    'Boil the meat in large kettle, with water to cover, until very done and meat falls from bones. ' +
+    'Beef may be substituted for some of the pork, if desired.' +
+    'Remove meat form broth, debone, and pick over for small bones.  Grind meat and set aside. ' +
+    'Strain the broth and wash the kettle to prevent scorching.  Measure broth and return to kettle. ' +
+    'Bring to boil and add oatmeal, stirring constantly.  Cook until oatmeal is done. Add ground meat to oatmeal mixture and mix well. ' +
+    'Return to boiling, being careful that it does not stick to the kettle.  Add salt & pepper to taste.  Remove from heat.' +
+    ' Pour into pans and let cool until firm.  May be cut into squares, wrapped and frozen, or left in the fridge for 1 week. <br/><br/> ' +
+    'To serve, cut into slices and fry in skillet, no oil should be need if lean meat wasn\'t used. Brown the slices until crispy.' +
+    'Syrup may be added while eating.', 'https://zgrauerholz.com/images/pruttles.jpg', [new Ingredient('Pork', 8, 'lbs, not lean\!'),
+      new Ingredient('Broth', 8, 'qts.'),
+      new Ingredient('Oats', 1, 'lg. bx. oatmeal')]),
+    new Recipe('Rouladen', 'A German meat dish, usually consisting of bacon, onions, mustard and pickles wrapped in thinly ' +
+      'sliced beef which is then cooked. <br/><br/>The meat should be cut into 4-6 thinly sliced portions in a regular shape. ' +
+      'Pound each piece of meat with a mallet until thin. Place salt, pepper, mustard, bacon, and onion OR sauerkraut over each. ' +
+      'Roll up and secure rolls with toothpicks or string.  Sauté in hot fat in skillet until well browned on all sides. ' +
+      'Transfer to a casserole.  Add flour to the pan drippings, cook for a few seconds, then slowly add the beef broth. ' +
+      'Simmer until thickened. Pour over meat in casserole.  Cover slightly. Simmer 1.5 hours at 350°, or until tender. ' +
+      '', 'http://hostthetoast.com/wp-content/uploads/2013/04/Rouladen-110.jpg',
+      [new Ingredient('Round Steak', 2, 'lbs.'),
+        new Ingredient('Onion', 0.5, 'cup'),
+        new Ingredient('Sauerkraut', 1, 'cup'),
+        new Ingredient('Bacon', 4, 'slices'),
+        new Ingredient('Mustard', 0.25, 'cup'),
+        new Ingredient('Fat', 2, 'tbsp'),
+        new Ingredient('Beef Broth', 2, 'cups'),
+        new Ingredient('Flour', 3, 'tbsp')])];
 
   recipesChanged = new EventEmitter<Recipe[]>();    // Emits an array of Recipe objects from the Firebase Db
 
