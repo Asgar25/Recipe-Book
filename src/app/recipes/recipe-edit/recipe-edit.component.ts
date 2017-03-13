@@ -73,7 +73,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
           recipeIngredients.push(
             new FormGroup({
               name: new FormControl(this.recipe.ingredients[i].name, Validators.required),
-              amount: new FormControl(this.recipe.ingredients[i].amount, [Validators.required, Validators.pattern('\\d+')]),
+              amount: new FormControl(this.recipe.ingredients[i].amount, [Validators.required, Validators.pattern('^[0-9]+(?:\.[0-9]+)?$')]),
               units: new FormControl(this.recipe.ingredients[i].units, Validators.required)
             })
           );

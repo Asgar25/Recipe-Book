@@ -68,7 +68,7 @@
 
                 <div class="col-sm-2">
                   <div class="form-group has-feedback" [class.has-success]="ingredient.controls['amount'].valid" [class.has-error]="!ingredient.controls['amount'].valid && !ingredient.controls['amount'].pristine">
-                    <input type="number" class="form-control" formControlName="amount">
+                    <input type="text" class="form-control" formControlName="amount">
                     <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!ingredient.controls['amount'].valid && !ingredient.controls['amount'].pristine"></span>
                   </div>
                 </div>
