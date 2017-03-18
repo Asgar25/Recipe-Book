@@ -15,7 +15,6 @@ import { ShoppingListService } from './shopping-list.service';
 @Component({
   selector: 'rb-shopping-list',
   templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.css'],
   animations: [
   trigger('flyInOut', [
     state('in', style({transform: 'translateX(0)'})),

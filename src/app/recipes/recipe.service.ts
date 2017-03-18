@@ -26,7 +26,7 @@ export class RecipeService {
       new Ingredient('Broth', 8, 'qts.'),
       new Ingredient('Oats', 1, 'lg. bx. oatmeal')]),
     new Recipe('Rouladen', 'A German meat dish, usually consisting of bacon, onions, mustard and pickles wrapped in thinly ' +
-      'sliced beef which is then cooked. <br/><br/>The meat should be cut into 4-6 thinly sliced portions in a regular shape. ' +
+      'sliced beef which is then cooked. <br/><br/> The meat should be cut into 4-6 thinly sliced portions in a regular shape. ' +
       'Pound each piece of meat with a mallet until thin. Place salt, pepper, mustard, bacon, and onion OR sauerkraut over each. ' +
       'Roll up and secure rolls with toothpicks or string.  Sauté in hot fat in skillet until well browned on all sides. ' +
       'Transfer to a casserole.  Add flour to the pan drippings, cook for a few seconds, then slowly add the beef broth. ' +

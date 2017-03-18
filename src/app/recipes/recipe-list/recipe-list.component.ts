@@ -5,8 +5,7 @@ import {RecipeService} from '../recipe.service';
 
 @Component({
   selector: 'rb-recipe-list',
-  templateUrl: './recipe-list.component.html',
-  styleUrls: ['./recipe-list.component.css']
+  templateUrl: './recipe-list.component.html'
 })
 export class RecipeListComponent implements OnInit {
   recipes: Recipe[] = [];   // local copy of the array of recipes in the service.  Displayed in <ul>

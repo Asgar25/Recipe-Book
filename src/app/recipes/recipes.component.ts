@@ -3,8 +3,7 @@ import { Recipe } from './recipe';
 
 @Component({
   selector: 'rb-recipes',
-  templateUrl: './recipes.component.html',
-  styleUrls: ['./recipes.component.css']
+  templateUrl: './recipes.component.html'
 })
 export class RecipesComponent {
   selectedRecipe: Recipe;   // Recipe to display in Recipe Detail component

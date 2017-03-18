@@ -4,8 +4,7 @@ import { ShoppingListService } from './shopping-list.service';
 
 @Component({
   selector: 'rb-shopping-list-add',
-  templateUrl: './shopping-list-add.component.html',
-  styleUrls: ['./shopping-list-add.component.css']
+  templateUrl: './shopping-list-add.component.html'
 })
 export class ShoppingListAddComponent implements OnChanges {
   isAdd: boolean = true;    // Indicates if the user is editing or adding an item
