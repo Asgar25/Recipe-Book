@@ -2,11 +2,11 @@
 ----
 
 ## What is it?
-A responsive Single Page Application (SPA), written in [Angular2](https://angular.io/), to store personal recipes. The Recipe Book website allows recipes to be added, edited, or deleted; individual ingredients are also managed. Images of the recipe can be specified as a URL, no uploading at the moment.  Recipe ingredients can be added to a separate Shopping List page.  Items can be added, edited, or deleted on the Shopping List page.
+A responsive Single Page Application (SPA), written in [Angular v4.0](https://angular.io/), to store personal recipes. The Recipe Book website allows recipes to be added, edited, or deleted; individual ingredients are also managed. Images of the recipe can be specified as a URL, no uploading at the moment.  Recipe ingredients can be added to a separate Shopping List page.  Items can be added, edited, or deleted on the Shopping List page.
 
 All of this data is stored in a [Firebase](https://firebase.google.com/) database. Authentication to the database is controlled using Google as an OAuth 2.0 provider.  Once user's login, they can get and set data in the database.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-beta.32.3. The HTML/CSS templates utilize [Bootstrap](http://getbootstrap.com/) version 3.3.7 for styling.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli). The HTML/CSS templates utilize [Bootstrap](http://getbootstrap.com/) version 3.3.7 for styling.
 
 ## Installation
 1. Download and install [Node.js](https://nodejs.org/en/download/) using these [instructions](https://docs.npmjs.com/getting-started/installing-node).
@@ -72,6 +72,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ### Todos
 - [X] Add user authentication and authorization via Google OAuth 2.0
 - [X] Guard paths/routes based on user
+- [ ] Add authorization & authentication to recipe CRUD operations
 
 ### License
 GNU GENERAL PUBLIC LICENSE

@@ -1,14 +1,16 @@
 import {
   Component,
   OnInit,
-  Input,
+  Input
+} from '@angular/core';
+import {
   trigger,
   state,
   style,
   transition,
   animate,
   keyframes
-} from '@angular/core';
+} from '@angular/animations';
 import { Ingredient } from '../ingredient';
 import { ShoppingListService } from './shopping-list.service';
 

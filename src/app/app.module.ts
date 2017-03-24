@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule  } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';    // Lazy loads Children
@@ -23,6 +24,7 @@ import { FooterComponent } from './footer.component';
   imports: [
     BrowserModule,
     HttpModule,
+    BrowserAnimationsModule,
     routing
   ],
   providers: [
