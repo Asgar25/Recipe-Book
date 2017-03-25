@@ -7,6 +7,9 @@ declare var firebase: any;
 @Injectable()
 export class AuthService {
   provider = new firebase.auth.GoogleAuthProvider();
+  displayName: string;
+  photoUrl: string;
+  email: string;
 
   constructor(private router: Router) { }
 
@@ -21,7 +24,13 @@ export class AuthService {
     firebase.auth().signInWithPopup(this.provider).then(result => {
       if (result) {
         this.router.navigate(['/recipes']);
-        console.log(result);
+        //console.log(result);
+        //console.log(result.user.displayName);
+        //console.log(result.user.photoURL);
+        // console.log(result.user.email);
+        this.displayName = result.user.displayName;
+        this.photoUrl = result.user.photoURL;
+        this.email = result.user.email;
         var token, user;
         // The signed-in user info.
         user = result.user;
@@ -30,15 +39,15 @@ export class AuthService {
           token = result.credential.accessToken;
         }
       }
-  }).catch(error => {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var errorEmail = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        alert('Unable to login with ' + errorEmail + '\n' + errorCode + ' - ' + errorMessage);
+    }).catch(error => {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var errorEmail = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      alert('Unable to login with ' + errorEmail + '\n' + errorCode + ' - ' + errorMessage);
     });
 
   }

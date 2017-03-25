@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import {Recipe} from '../recipe';
-import {ShoppingListService} from '../../shopping-list/shopping-list.service';
+
+import { Recipe } from '../recipe';
+import { ShoppingListService } from '../../shopping-list/shopping-list.service';
 import { RecipeService } from '../recipe.service';
+import { AuthService } from '../../auth/auth.service';
 
 
 @Component({
@@ -15,12 +17,21 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private recipeIndex: number;
   selectedRecipe: Recipe;
+  private authSubscription: Subscription;
+  isAuthenticated: boolean = false;
 
   // Inject the shopping list Service, recipe service, active route, and router
   constructor(private shoppingListService: ShoppingListService,
     private route: ActivatedRoute,
     private recipeSerivce: RecipeService,
-    private router: Router) { }
+    private router: Router,
+    private authService: AuthService) {
+    // Subscribe to auth changes (login/out) to set the Boolean property.
+    // Used for stateful Header Nav
+    this.authSubscription = this.authService.isAuthenticated().subscribe(
+      authStatus => this.isAuthenticated = authStatus
+    );
+  }
 
 
   /**
@@ -45,6 +56,7 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.authSubscription.unsubscribe();
   }
 
 
@@ -74,10 +86,24 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
    * @returns {void}
    */
   onDelete() {
-    if (confirm('Deletion cannot be undone, are you sure?')) {
+    if (confirm('Deletion cannot be undone, are you sure?') && this.isAuthenticated) {
       this.recipeSerivce.deleteRecipe(this.recipeIndex);
       // Reload list
       this.router.navigate(['/recipes']);
+    }
+  }
+
+
+  /**
+   * isAuthor - Determines if the current user created the selected recipe.  Used to allow CRUD
+   *
+   * @returns {boolean} true: if user is the one who created the selected recipe
+   */
+  isAuthor(): boolean {
+    if (!this.isAuthenticated || !this.selectedRecipe) {
+      return false;
+    } else if (this.authService.email == this.selectedRecipe.authorEmail) {
+      return true;
     }
   }
 }

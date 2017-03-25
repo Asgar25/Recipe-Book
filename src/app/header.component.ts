@@ -2,7 +2,6 @@ import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 
 import { RecipeService } from './recipes/recipe.service';
-import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
 
 @Component({

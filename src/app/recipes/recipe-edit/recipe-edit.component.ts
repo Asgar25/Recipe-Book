@@ -9,24 +9,34 @@ import { Subscription } from 'rxjs/Rx';
 
 import { RecipeService } from '../recipe.service';
 import { Recipe } from '../recipe';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'rb-recipe-edit',
   templateUrl: './recipe-edit.component.html'
 })
 export class RecipeEditComponent implements OnInit, OnDestroy {
-    in;
+  in;
   recipeForm: FormGroup;                // Main form for editing or adding recipes
   private subscription: Subscription;   // Subscribe to Router param changes.  Used to get Recipe ID
   private recipeIndex: number;          // ID of recipe location in recipes array
   private recipe: Recipe;               // The current Rcipe for the edit/new form
   private isNew: boolean = true;        //  Are we editing or adding
+  private authSubscription: Subscription;
+  isAuthenticated: boolean = false;
 
   // Inject the active route, custom Recipe Service, Form Builder, and Router
   constructor(private route: ActivatedRoute,
     private recipeService: RecipeService,
     private formBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private authService: AuthService) {
+    // Subscribe to auth changes (login/out) to set the Boolean property.
+    // Used for stateful Header Nav
+    this.authSubscription = this.authService.isAuthenticated().subscribe(
+      authStatus => this.isAuthenticated = authStatus
+    );
+  }
 
   ngOnInit() {
     // Subscribe to changes in route params.  Use to get current recipe ID
@@ -48,6 +58,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   // unsubscribe to stop memory leaks
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.authSubscription.unsubscribe();
   }
 
 
@@ -100,10 +111,15 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
    */
   onSubmit() {
     const newRecipe = this.recipeForm.value;
-    if (this.isNew) {
+    newRecipe.author = this.authService.displayName;
+    newRecipe.authorPhotoUrl = this.authService.photoUrl;
+    newRecipe.authorEmail = this.authService.email;
+    if (this.isNew && this.authService.email) {
       this.recipeService.addRecipe(newRecipe);
     } else {
-      this.recipeService.editRecipe(this.recipe, newRecipe);
+      if (this.recipe.authorEmail == this.authService.email) {
+        this.recipeService.editRecipe(this.recipe, newRecipe);
+      }
     }
     this.navigateBack();
   }

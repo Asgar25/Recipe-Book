@@ -24,7 +24,10 @@ export class RecipeService {
     'To serve, cut into slices and fry in skillet, no oil should be need if lean meat wasn\'t used. Brown the slices until crispy.' +
     'Syrup may be added while eating.', 'https://zgrauerholz.com/images/pruttles.jpg', [new Ingredient('Pork', 8, 'lbs, not lean\!'),
       new Ingredient('Broth', 8, 'qts.'),
-      new Ingredient('Oats', 1, 'lg. bx. oatmeal')]),
+      new Ingredient('Oats', 1, 'lg. bx. oatmeal')],
+    'Zach Grauerholz',
+    'https://lh3.googleusercontent.com/-4zYfsZXd_Lo/AAAAAAAAAAI/AAAAAAAAIxI/SjxY0asPGbk/photo.jpg',
+    'zachary.grauerholz@gmail.com'),
     new Recipe('Rouladen', 'A German meat dish, usually consisting of bacon, onions, mustard and pickles wrapped in thinly ' +
       'sliced beef which is then cooked. <br/><br/> The meat should be cut into 4-6 thinly sliced portions in a regular shape. ' +
       'Pound each piece of meat with a mallet until thin. Place salt, pepper, mustard, bacon, and onion OR sauerkraut over each. ' +
@@ -39,7 +42,10 @@ export class RecipeService {
         new Ingredient('Mustard', 0.25, 'cup'),
         new Ingredient('Fat', 2, 'tbsp'),
         new Ingredient('Beef Broth', 2, 'cups'),
-        new Ingredient('Flour', 3, 'tbsp')])];
+        new Ingredient('Flour', 3, 'tbsp')],
+      'Zach Grauerholz',
+      'https://lh3.googleusercontent.com/-4zYfsZXd_Lo/AAAAAAAAAAI/AAAAAAAAIxI/SjxY0asPGbk/photo.jpg',
+      'zachary.grauerholz@gmail.com')];
 
   recipesChanged = new EventEmitter<Recipe[]>();    // Emits an array of Recipe objects from the Firebase Db
 

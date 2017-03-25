@@ -1,11 +1,18 @@
 <a [routerLink]="[recipeId]" class="list-group-item clearfix" routerLinkActive="active">
-  <div class="col-xs-9">
-    <h4 class="list-group-item-heading">{{recipe.name}}</h4>
-    <p class="list-group-item-text" [innerHTML]="recipe.description.substr(0,140)"></p>
-  </div>
-  <span class="col-xs-3">
-      <img class="img-responsive img-rounded pull-right"
-           src="{{recipe.imageUrl}}"
-           style="max-height: 75px;"/>
-  </span>
+    <div class="row">
+        <div class="col-xs-9">
+          <h4 class="list-group-item-heading">{{recipe.name}}</h4>
+          <p class="list-group-item-text" [innerHTML]="recipe.description.substr(0,140)"></p>
+        </div>
+        <span class="col-xs-3">
+            <img class="img-responsive img-rounded pull-right"
+                 src="{{recipe.imageUrl}}"
+                 style="max-height: 75px;"/>
+        </span>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            By {{recipe.author}}
+        </div>
+    </div>
 </a>

@@ -72,7 +72,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ### Todos
 - [X] Add user authentication and authorization via Google OAuth 2.0
 - [X] Guard paths/routes based on user
-- [ ] Add authorization & authentication to recipe CRUD operations
+- [X] Add authorization & authentication to recipe CRUD operations
 
 ### License
 GNU GENERAL PUBLIC LICENSE

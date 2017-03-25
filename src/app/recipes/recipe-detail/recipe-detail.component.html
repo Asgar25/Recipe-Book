@@ -7,11 +7,13 @@
 <div class="row">
   <div class="col-xs-12">
     <h2>{{selectedRecipe?.name}}</h2>
+    <span class="">By {{selectedRecipe?.author}}</span>
   </div>
   <div class="col-xs-12">
+      <hr>
     <button class="btn btn-success" (click)="addItemsToShoppingList()" data-toggle="tooltip" title="Add to shopping list"><span class="glyphicon glyphicon-plus"></span> Shopping List</button>
-    <button class="btn btn-primary" (click)="onEdit()">Edit</button>
-    <button class="btn btn-danger" (click)="onDelete()" data-toggle="tooltip" title="Delete Recipe"><span class="glyphicon glyphicon-trash"></span></button>
+    <button class="btn btn-primary" (click)="onEdit()" *ngIf="isAuthor()">Edit</button>
+    <button class="btn btn-danger" (click)="onDelete()" data-toggle="tooltip" title="Delete Recipe" *ngIf="isAuthor()"><span class="glyphicon glyphicon-trash"></span></button>
   </div>
 </div>
 <hr>
@@ -24,7 +26,7 @@
   <div class="col-xs-12 col-md-10 col-lg-6">
     <h3>Ingredients</h3>
     <ul class="list-group ingredient-list">
-        <!-- Add all ingredients in array to list -->
+      <!-- Add all ingredients in array to list -->
       <li class="list-group-item ingredient" *ngFor="let item of selectedRecipe?.ingredients">{{item.name}} ({{item.amount}} {{item?.units}})</li>
     </ul>
   </div>
