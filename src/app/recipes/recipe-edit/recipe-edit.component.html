@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-      <h3></h3>
+    <h3></h3>
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-xs-12">
@@ -54,33 +54,31 @@
       </div>
       <div class="row">
         <label for="content">Ingredients</label>
-        <div class="col-xs-12">
-          <ul class="list-group" formArrayName="ingredients">
+        <div class="col-xs-12" formArrayName="ingredients">
+          <ul class="list-group">
             <label for="content">Edit Ingredients</label>
-            <div class="row" *ngFor="let ingredient of recipeForm.controls['ingredients'].controls; let i = index">
-              <div formGroupName="{{i}}">
-                <div class="col-sm-5">
-                  <div class="form-group has-feedback" [class.has-success]="ingredient.controls['name'].valid" [class.has-error]="!ingredient.controls['name'].valid && !ingredient.controls['name'].pristine">
-                    <input type="text" class="form-control" formControlName="name">
-                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!ingredient.controls['name'].valid && !ingredient.controls['name'].pristine"></span>
-                  </div>
+            <div class="row" *ngFor="let ingredient of recipeForm.get['ingredients'].controls; let i = index" [formGroupName]="i">
+              <div class="col-sm-5">
+                <div class="form-group has-feedback" [class.has-success]="ingredient.controls['name'].valid" [class.has-error]="!ingredient.controls['name'].valid && !ingredient.controls['name'].pristine">
+                  <input type="text" class="form-control" formControlName="name">
+                  <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!ingredient.controls['name'].valid && !ingredient.controls['name'].pristine"></span>
                 </div>
+              </div>
 
-                <div class="col-sm-2">
-                  <div class="form-group has-feedback" [class.has-success]="ingredient.controls['amount'].valid" [class.has-error]="!ingredient.controls['amount'].valid && !ingredient.controls['amount'].pristine">
-                    <input type="text" class="form-control" formControlName="amount">
-                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!ingredient.controls['amount'].valid && !ingredient.controls['amount'].pristine"></span>
-                  </div>
+              <div class="col-sm-2">
+                <div class="form-group has-feedback" [class.has-success]="ingredient.controls['amount'].valid" [class.has-error]="!ingredient.controls['amount'].valid && !ingredient.controls['amount'].pristine">
+                  <input type="text" class="form-control" formControlName="amount">
+                  <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!ingredient.controls['amount'].valid && !ingredient.controls['amount'].pristine"></span>
                 </div>
-                <div class="col-sm-3">
-                  <div class="form-group has-feedback" [class.has-success]="ingredient.controls['units'].valid" [class.has-error]="!ingredient.controls['units'].valid && !ingredient.controls['units'].pristine">
-                    <input type="text" class="form-control" formControlName="units">
-                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!ingredient.controls['units'].valid && !ingredient.controls['units'].pristine"></span>
-                  </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group has-feedback" [class.has-success]="ingredient.controls['units'].valid" [class.has-error]="!ingredient.controls['units'].valid && !ingredient.controls['units'].pristine">
+                  <input type="text" class="form-control" formControlName="units">
+                  <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" *ngIf="!ingredient.controls['units'].valid && !ingredient.controls['units'].pristine"></span>
                 </div>
-                <div class="col-sm-2">
-                  <button class="btn btn-danger" (click)="onRemoveIngredient(i)"><span class="glyphicon glyphicon-remove"></span></button>
-                </div>
+              </div>
+              <div class="col-sm-2">
+                <button class="btn btn-danger" (click)="onRemoveIngredient(i)"><span class="glyphicon glyphicon-remove"></span></button>
               </div>
 
               <br><br>
